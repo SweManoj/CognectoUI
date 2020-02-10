@@ -22,6 +22,7 @@ import {
 } from '@nebular/theme';
 import { AuthModule } from './auth/auth.module';
 import { InterceptorModule } from './core/interceptor/interceptor.module';
+import { AuthGuard } from './core/services/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +48,7 @@ import { InterceptorModule } from './core/interceptor/interceptor.module';
     InterceptorModule
   ],
   bootstrap: [AppComponent],
+  providers: [AuthGuard]
 })
 export class AppModule {
 }

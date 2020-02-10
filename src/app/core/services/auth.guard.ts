@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
 
-        if (sessionStorage.get('accessToken') && sessionStorage.get('accessToken') !== '')
+        if (sessionStorage.getItem('accessToken') && sessionStorage.getItem('accessToken') !== '')
             return of(true);
         else {
             this.router.navigate(['/auth/login']);  // optional url values
