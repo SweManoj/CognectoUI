@@ -23,7 +23,7 @@ export class AddTokenInterceptor implements HttpInterceptor {
                 url: serverUrl
             });
         } else {
-            const accessToken = sessionStorage.get('accessToken');
+            const accessToken = sessionStorage.getItem('accessToken');
             request = request.clone({
                 setHeaders: {
                     'Authorization': `Bearer ${accessToken}`
