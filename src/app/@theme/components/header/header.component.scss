@@ -85,6 +85,10 @@
     }
   }
 
+  .nb-theme-default nb-menu .menu-item a {
+    padding: 0.7rem 2rem;
+  }
+
   @include media-breakpoint-down(xl) {
     .control-item.search,
     .control-item.notifications,

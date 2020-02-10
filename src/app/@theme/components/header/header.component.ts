@@ -5,6 +5,7 @@ import { UserData } from '../../../@core/data/users';
 import { AnalyticsService, LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -38,16 +39,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [{ title: 'Profile', icon: 'person-outline' }, { title: 'Log out', icon: 'log-out-outline' }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService,
-              private analytics: AnalyticsService,
-  ) {}
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService,
+    private analytics: AnalyticsService, private router: Router
+  ) { }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
@@ -70,6 +71,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+    // user icon click event
+    this.menuService.onItemClick().subscribe((event) => {
+      this.onItemSelection(event.item.title);
+    })
+  }
+
+  onItemSelection(menuTitle: string) {
+    if (menuTitle === 'Log out') {
+      sessionStorage.clear();
+      this.router.navigateByUrl('/auth');
+    }
   }
 
   ngOnDestroy() {

@@ -5,4 +5,5 @@
  */
 export const environment = {
   production: true,
+  serverUrl: 'http://10.19.74.21:8081/iot'
 };

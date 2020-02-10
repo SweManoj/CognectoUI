@@ -21,6 +21,7 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { AuthModule } from './auth/auth.module';
+import { InterceptorModule } from './core/interceptor/interceptor.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +44,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     CoreModule.forRoot(),
     AuthModule,
+    InterceptorModule
   ],
   bootstrap: [AppComponent],
 })
